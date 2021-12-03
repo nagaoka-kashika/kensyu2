@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8" />
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title>Let's try 3D Tiles and kml data of Kumamoto City in Cesium</title>
+    <script src="../Build/Cesium/Cesium.js"></script>
+    <style>
+      @import url(../Build/Cesium/Widgets/widgets.css);
+      html,
+      body,
+      #cesiumContainer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cesiumContainer"></div>
+    <script>
+      var viewer = new Cesium.Viewer("cesiumContainer");
+      viewer.dataSources.add(Cesium.KmlDataSource.load("./sample/kumamoto/KML/kumamoto_syourai.kmz",
+        {
+          clampToGround:true
+        }
+      ));
+      var tileset1 = new Cesium.Cesium3DTileset({ url: './sample/kumamoto/tileset.json'});
+      tileset1.readyPromise.then(function(tileset1) {
+        viewer.scene.primitives.add(tileset1);
+        tileset1.style = new Cesium.Cesium3DTileStyle({
+          color: 'rgb(0, 0, 255)',
+          markerSymbol: '?'
+        });
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(130.71, 32.7, 10000),
+          orientation : {
+            heading : Cesium.Math.toRadians(0.0),
+            pitch : Cesium.Math.toRadians(-45.0),
+            roll : 0.0
+          }
+        });
+      }).otherwise(function(error) {
+        console.log(error);
+      });
+    </script>
+  </body>
+</html>
