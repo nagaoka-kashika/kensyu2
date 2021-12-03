@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8" />
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title>Hello World!</title>
+    <script src="../Build/Cesium/Cesium.js"></script>
+    <style>
+      @import url(../Build/Cesium/Widgets/widgets.css);
+      html,
+      body,
+      #cesiumContainer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cesiumContainer"></div>
+    <script>
+      var viewer = new Cesium.Viewer("cesiumContainer");
+
+      var redLine = viewer.entities.add({
+          name:"荒川",
+          description:"ここは荒川です。",
+          polyline : {
+              positions : Cesium.Cartesian3.fromDegreesArrayHeights([
+                  139.84485787044892, 35.64293049276087, 0,
+                  139.84736085429955, 35.67601793087133, 0,
+                  139.85731465047442, 35.69241759981489, 0,
+                  139.85753084860880, 35.69967897004378, 0,
+                  139.85381443124191, 35.70705882022578, 0,
+                  139.82253530535300, 35.73919433749505, 0,
+                  139.81822702138945, 35.74786897377397, 0,
+                  139.80878553708666, 35.75740764163911, 0,
+                  139.79857331937145, 35.76014393365997, 0,
+                  139.78284253525118, 35.75741262215742, 0]),
+              width : 5,
+              material : Cesium.Color.RED,
+          }
+      });
+
+      viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(139.85548415860978, 35.70728274976147,20000.0),
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8" />
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title>Hello World!</title>
+    <script src="../Build/Cesium/Cesium.js"></script>
+    <style>
+      @import url(../Build/Cesium/Widgets/widgets.css);
+      html,
+      body,
+      #cesiumContainer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cesiumContainer"></div>
+    <script>
+      var viewer = new Cesium.Viewer("cesiumContainer");
+
+      var redLine = viewer.entities.add({
+          name:"荒川",
+          description:"ここは荒川です。",
+          polyline : {
+              positions : Cesium.Cartesian3.fromDegreesArrayHeights([
+                139.8449, 35.6429, 0,
+                139.8474, 35.6760, 0,
+                139.8573, 35.6924, 0,
+                139.8575, 35.6997, 0,
+                139.8538, 35.7071, 0,
+                139.8225, 35.7392, 0,
+                139.8182, 35.7479, 0,
+                139.8088, 35.7574, 0,
+                139.7986, 35.7601, 0,
+                139.7828, 35.7574, 0]),
+              width : 5,
+              material : Cesium.Color.RED
+          }
+      });
+
+      var redLine = viewer.entities.add({
+          name:"江戸川",
+          description:"ここは江戸川です。",
+          polyline : {
+              positions : Cesium.Cartesian3.fromDegreesArrayHeights([
+                139.9502, 35.6708, 0,
+                139.9323, 35.6976, 0,
+                139.9168, 35.7062, 0,
+                139.8975, 35.7254, 0,
+                139.8976, 35.7316, 0,
+                139.9009, 35.7370, 0,
+                139.8986, 35.7454, 0,
+                139.8919, 35.7488, 0,
+                139.8832, 35.7583, 0,
+                139.8822, 35.7630, 0,
+                139.8794, 35.7670, 0,
+                139.8808, 35.7719, 0,
+                139.8937, 35.7797, 0]),
+              width : 5,
+              material : Cesium.Color.fromBytes(0,255,255,255)
+          }
+      });
+
+      viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(139.8854,35.7025,30000.0),
+      });
+
+    </script>
+  </body>
+</html>
